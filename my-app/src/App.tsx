@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Users from "./pages/Users";
-import Posts from "./pages/Posts";
+import Post from "./pages/Post";
 
 const App = () => {
   //
@@ -10,7 +10,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Users} />
         <Route exact path="/users" component={Users} />
-        <Route exact path="/posts" component={Posts} />
+        <Route exact path="/posts" component={Post} />
       </Switch>
     </BrowserRouter>
   );

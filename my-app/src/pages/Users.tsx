@@ -2,36 +2,61 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { AppState } from "../store";
 import { UsersState } from "../store/users/types";
-import { thunkGetUsers } from "../store/users/actions";
+import { IUser } from "../store/users/types";
+import {
+  thunkGetUsers,
+  thunkGetUserPost,
+  thunkGetUserComments,
+  thunkSetInitialValue,
+} from "../store/users/actions";
+import { thunkSetSelectedPost} from '../store/post/actions';
+import Profile from "./Profile";
 
 interface Props {
   users: UsersState;
   thunkGetUsers: any;
+  thunkGetUserPost: any;
+  thunkGetUserComments: any;
+  thunkSetInitialValue: any;
+  thunkSetSelectedPost: any;
 }
-const Users: React.FC<Props> = ({ users, thunkGetUsers }) => {
+const Users: React.FC<Props> = ({
+  users,
+  thunkGetUsers,
+  thunkGetUserPost,
+  thunkGetUserComments,
+  thunkSetInitialValue,
+  thunkSetSelectedPost,
+}) => {
   const [userProfile, setUserProfile] = useState(false);
-  const [name, setName] = useState("");
+  const [user, setUser] = useState<IUser | null>(null);
+
   useEffect(() => {
     thunkGetUsers();
   }, [thunkGetUsers]);
 
-  const changeView = (name:string) => {
-    !userProfile && setName(name);
+  const changeView = (user: IUser | null, loadData: boolean) => {
+    !userProfile && setUser(user);
+    if (loadData) {
+      thunkSetInitialValue();
+      thunkGetUserPost(user?.id!);
+      thunkGetUserComments(user?.id!);
+    }
     setUserProfile(!userProfile);
   };
 
   return userProfile ? (
     <div>
-      <div className="profileButton" onClick={()=>changeView("")}>
+      <div className="profileButton" onClick={() => changeView(null, false)}>
         Back to Users Lists
       </div>
-      <h5>Detail about {name}</h5>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
+      <Profile
+        user={user!}
+        posts={users?.userPosts!}
+        comments={users?.userComments!}
+        initialValue={users?.initialValue!}
+        thunkSetSelectedPost={thunkSetSelectedPost}
+      />
     </div>
   ) : (
     <div>
@@ -64,7 +89,10 @@ const Users: React.FC<Props> = ({ users, thunkGetUsers }) => {
                     </div>
                     <div></div>
                     <div className="card__info">
-                      <div className="profileButton" onClick={()=>changeView(user.name)}>
+                      <div
+                        className="profileButton"
+                        onClick={() => changeView(user, true)}
+                      >
                         View profile
                       </div>
                       <div className="button">
@@ -90,4 +118,9 @@ const mapStateToProps = (state: AppState) => ({
 
 export default connect(mapStateToProps, {
   thunkGetUsers,
+  thunkGetUserPost,
+  thunkGetUserComments,
+  thunkSetInitialValue,
+  thunkSetSelectedPost,
+  
 })(Users);
