@@ -23,11 +23,11 @@ const Post: React.FC<Props> = ({ post, thunkGetPostComments }) => {
   if (goBack) return <Redirect to="/users" />;
   return (
     <div>
-      <div className="backButton" style={{width:'7.3%'}} onClick={back}>
+      <div className="profileBackButton" onClick={back}>
         Back to Profile
       </div>
       <div className="profile-main" style={{ height: "100%" }}>
-        <div className="user-detail">
+        <div className="post-detail">
           <h2>Post Detail</h2>
           <hr />
           <h4>Title</h4>

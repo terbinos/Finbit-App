@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { IUser, IUserComments, IUserPosts } from "../store/users/types";
+import { Charts } from "./Chart";
 
 interface Props {
   user: IUser;
@@ -11,7 +12,6 @@ interface Props {
   thunkSetSelectedPost: any;
   thunkUpdateVIP: any;
   thunkUpdateCommentsOff: any;
-  thunkGetUserPost:any;
 }
 const Profile: React.FC<Props> = ({
   user,
@@ -21,7 +21,6 @@ const Profile: React.FC<Props> = ({
   thunkSetSelectedPost,
   thunkUpdateVIP,
   thunkUpdateCommentsOff,
-  thunkGetUserPost,
 }) => {
   const [
     maximumCommentPost,
@@ -34,22 +33,25 @@ const Profile: React.FC<Props> = ({
   const [postRedirect, setPostRedirect] = useState(false);
   const [maximumComments, setMaximumComments] = useState(initialValue);
   const [minimumComments, setMinimumComments] = useState(initialValue);
-
+  const [commentsOnPosts, setCommentsOnPosts] = useState<number[]>([]);
+  const [labels, setLabels] = useState<number[]>([]);
   const vipChange = () => {
     thunkUpdateVIP(!user?.isVIP!);
   };
 
   const changeCommentSetting = (post: IUserPosts) => {
     thunkUpdateCommentsOff(post.id, !post.isCommentOff);
-    // thunkGetUserPost(post?.userId!);
   };
 
   useEffect(() => {
-    posts?.forEach(async (post: IUserPosts) => {
+    let tempPosts:number[] = [];
+    let tempLebels:number[] = [];
+    posts?.forEach(async (post: IUserPosts,i) => {
       let res = await axios.get(
         `https://jsonplaceholder.typicode.com/posts/${post.id}/comments`
       );
-
+      tempPosts.push(res.data.length);
+      tempLebels.push(i+1);
       if (res.data.length >= maximumComments) {
         setMaximumComments(res.data.length);
         setMaximumCommentPost(post);
@@ -59,6 +61,8 @@ const Profile: React.FC<Props> = ({
         setMinimumCommentPost(post);
       }
     });
+    setCommentsOnPosts(tempPosts);
+    setLabels(tempLebels);
   }, [maximumComments, minimumComments, posts]);
 
   const getPost = (flag: boolean) => {
@@ -172,12 +176,14 @@ const Profile: React.FC<Props> = ({
             <div className="detail-box">
               <table id="customers">
                 <tr>
+                  <th>Post ID</th>
                   <th>Post Title</th>
-                  <th>Show comments</th>
+                  <th style={{textAlign:'center'}}>comments</th>
                 </tr>
-                {posts?.map((post) => {
+                {posts?.map((post,i) => {
                   return (
                     <tr>
+                      <td>{i+1}</td>
                       <td>
                         {" "}
                         <button
@@ -209,6 +215,9 @@ const Profile: React.FC<Props> = ({
                   );
                 })}
               </table>
+            </div>
+            <div className="detail-box">
+              <Charts data={commentsOnPosts} labels={labels} />
             </div>
           </div>
         </div>

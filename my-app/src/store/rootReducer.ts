@@ -1,10 +1,8 @@
-import { AnyAction, CombinedState, combineReducers, Reducer } from "redux";
+import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PostReducer } from "./post/reducers";
-import { PostState } from "./post/types";
 import { UsersReducer } from "./users/reducer";
-import { UsersState } from "./users/types";
 
 
 
@@ -15,7 +13,7 @@ export const rootReducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['post', 'users'],
+    whitelist: ['post', 'users','isVIP'],
 };
 
 export default persistReducer(persistConfig, rootReducer);

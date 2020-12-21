@@ -93,7 +93,7 @@ export const thunkUpdateVIP = (
 ): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
   try {
     dispatch({
-      type: UsersTypes.VALUE_UPDATED,
+      type: UsersTypes.VIP_UPDATED,
       payload: isVIP,
     });
   } catch (error) {
@@ -106,8 +106,6 @@ export const thunkUpdateCommentsOff = (
   isVIP: boolean
 ): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
   try {
-    console.log("postId", postId);
-    console.log("isVIP", isVIP);
     dispatch({
       type: UsersTypes.COMMENT_OFF_UPDATED,
       payload: { id: postId, data: isVIP },
@@ -117,16 +115,18 @@ export const thunkUpdateCommentsOff = (
   }
 };
 
-// export const thunkUpdateVIPFromList = (
-//   userId:number,
-//   isVIP: boolean,
-// ): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
-//   try {
-//     dispatch({
-//       type: UsersTypes.VIP_UPDATED,
-//       payload: {id:userId,data:isVIP},
-//     });
-//   } catch (error) {
-//     console.log("Update error", error);
-//   }
-// };
+export const thunkUpdateVIPFromList = (
+  userId:number,
+  isVIP: boolean,
+): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
+  try {
+    console.log("usre id",userId);
+    
+    dispatch({
+      type: UsersTypes.VIP_FROM_LIST_UPDATED,
+      payload: {id: userId, data: isVIP},
+    });
+  } catch (error) {
+    console.log("Update error", error);
+  }
+};

@@ -1,15 +1,9 @@
-export interface IUserDetails {
-  userId: number;
-  vip: boolean;
-  comments: boolean;
-}
-
 export interface IUser {
     id: number,
     name: string,
     username: string,
     email: string,
-    isVIP: boolean | null,
+    isVIP: boolean ,
     address: {
       street: string,
       suite: string,
@@ -67,7 +61,7 @@ export enum UsersTypes {
   USER_COMMENT_FAILED = "USER_COMMENT_FAILED",
   INITIAL_VALUE_LOADED = "INITIAL_VALUE_LOADED",
   INITIAL_VALUE_FAILED = "INITIAL_VALUE_FAILED",
-  VALUE_UPDATED = 'VALUE_UPDATED',
+  VIP_FROM_LIST_UPDATED = 'VIP_FROM_LIST_UPDATED',
   VIP_UPDATED = 'VIP_UPDATED', 
   COMMENT_OFF_UPDATED = 'COMMENT_OFF_UPDATED',  
   SET_ROUTE_STATE = "SET_ROUTE_STATE",
@@ -78,8 +72,8 @@ interface CommentOffUpdatedAction {
   payload: any;
 }
 
-interface ValueUpdatedAction {
-  type: typeof UsersTypes.VALUE_UPDATED;
+interface VipFromListUpdatedAction {
+  type: typeof UsersTypes.VIP_FROM_LIST_UPDATED;
   payload: any;
 }
 
@@ -145,6 +139,6 @@ export type UsersActionTypes =
   | InitialValueLoadedAction
   | RouteStateLoadedAction
   | SelectedStateLoadedAction
-  | ValueUpdatedAction
+  | VipFromListUpdatedAction
   | VipUpdatedAction
   | CommentOffUpdatedAction

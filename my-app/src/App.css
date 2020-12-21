@@ -105,7 +105,7 @@ h4 {
   font-size: 0.9em;
   padding: 15px;
   width: 300px;
-  height: 420px;
+  height: 102%;
   background: #fff;
   border-radius: 2px;
   /* top: 50%;
@@ -171,7 +171,7 @@ a:active {
   margin-bottom: 48px;
 }
 .profileButton {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 48px;
   padding: 12px 20px;
   background: #5485f9;
@@ -182,10 +182,11 @@ a:active {
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease-in;
+  width: 100%;
 
   cursor: pointer;
   border: none;
-  text-align: left;
+  text-align: center;
   outline: none;
 }
 
@@ -230,7 +231,7 @@ a:active {
 /* Profile css */
 .profile-main {
   width: 900px;
-  height: 1200px;
+  height: 214vh;
   margin: 0 auto;
   box-shadow: 0px 1px 5px 1px #000;
   padding-bottom: 10px;
@@ -244,6 +245,13 @@ a:active {
   border-bottom: 2px solid #e2f3fb;
 }
 .user-detail {
+  position: relative;
+  width: 75%;
+  margin: 0 auto;
+  height: 100%;
+  padding-top: 1%;
+}
+.post-detail {
   position: relative;
   width: 75%;
   margin: 0 auto;
@@ -461,6 +469,7 @@ a:active {
 }
 .backButton {
   width: 10%;
+  font-family: Courier New, monospace;
   margin-top: 30px;
   margin-left: 20%;
   margin-bottom: 2%;
@@ -478,6 +487,28 @@ a:active {
   text-align: left;
   outline: none;
 }
+
+.profileBackButton {
+  width: 7.3%;
+  font-family: Courier New, monospace;
+  margin-top: 30px;
+  margin-left: 20%;
+  margin-bottom: 2%;
+  padding: 12px 20px;
+  background: #9a56c2;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
 .turnoffButton {
   color: white;
   margin-left: 18%;
@@ -492,8 +523,27 @@ a:active {
 }
 
 @media (min-width: 320px) and (max-width: 640px) {
+  .card__content {
+    line-height: 1.5;
+    font-size: 0.9em;
+    padding: 15px;
+    width: 300px;
+    height: 102%;
+    background: #fff;
+    border-radius: 2px;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: -10%;
+    /* top: 50%;
+      left: 50%; */
+    /* transform: translate(-50%,-50%); */
+    box-shadow: 0px 1px 10px 1px #000;
+    overflow: hidden;
+    display: inline-block;
+  }
   .backButton {
     width: 80%;
+    font-family: Courier New, monospace;
     margin-top: 30px;
     margin-left: 5%;
     margin-bottom: 2%;
@@ -511,13 +561,50 @@ a:active {
     text-align: left;
     outline: none;
   }
+  .profileBackButton {
+    width: 80%;
+    font-family: Courier New, monospace;
+    margin-top: 30px;
+    margin-left: 5%;
+    margin-bottom: 10%;
+    padding: 12px 20px;
+    background: #9a56c2;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    outline: none;
+  }
   .profile-main {
-    width: 90%;
-    height: 100vh;
+    width: 80%;
+    height: 264vh;
     /* height: 80000; */
   }
   .user-detail {
     width: 95%;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: -20%;
+    /* height: 10; */
+  }
+    .user-detail {
+    width: 90%;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: -30%;
+    /* height: 10; */
+  }
+  .post-detail {
+    width: 90%;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: -1%;
     /* height: 10; */
   }
   .user-image {

@@ -18,7 +18,7 @@ export const UsersReducer: Reducer<UsersState, UsersActionTypes> = (
   action
 ) => {
   switch (action.type) {
-    case UsersTypes.VALUE_UPDATED:
+    case UsersTypes.VIP_UPDATED:
       return update(state, {
         user: {
           isVIP: { $set: action.payload },
@@ -34,16 +34,15 @@ export const UsersReducer: Reducer<UsersState, UsersActionTypes> = (
         ),
       };
 
-    // case UsersTypes.VIP_UPDATED:
-    //   return {
-    //     ...state,
-    //     users: state.users?.map((user, i) =>
-    //       i === action.payload.id
-    //         ? { ...user, isVIP: action.payload.data }
-    //         : user
-    //     ),
-    //   };
-
+    case UsersTypes.VIP_FROM_LIST_UPDATED:
+      return {
+        ...state,
+        users: state.users?.map((user) =>
+          user.id === action.payload.id
+            ? { ...user, isVIP: action.payload.data }
+            : user
+        )
+      };
     case UsersTypes.SET_ROUTE_STATE:
       return {
         ...state,
