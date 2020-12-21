@@ -30,12 +30,10 @@ const Profile: React.FC<Props> = ({
   const [postRedirect, setPostRedirect] = useState(false);
   const [maximumComments, setMaximumComments] = useState(initialValue);
   const [minimumComments, setMinimumComments] = useState(initialValue);
-  const [vip, setVip] = useState(false);
   const [comment, setComments] = useState(false);
 
   const vipChange = () => {
-    setVip(!vip);
-    thunkUpdateVIP(vip);
+    thunkUpdateVIP(!user?.isVIP!);
   };
 
   const changeCommentSetting = () => {
@@ -83,7 +81,7 @@ const Profile: React.FC<Props> = ({
             <h2 style={{ fontFamily: "times-new-roman" }}>User Detail</h2>
             <hr />
             <h3>{user?.name}</h3>
-            {vip && <p style={{ color: "green", fontWeight: "bold" }}>VIP</p>}
+            {user?.isVIP! && <p style={{ color: "green", fontWeight: "bold" }}>VIP</p>}
             <p>
               <strong>{user?.email}</strong>
             </p>
@@ -104,7 +102,7 @@ const Profile: React.FC<Props> = ({
             <p>
               {user?.address.street},{user?.address.suite}
             </p>
-            <input type="checkbox" checked={vip} onChange={vipChange} />
+            <input type="checkbox" checked={user?.isVIP!} onChange={vipChange} />
             <label style={{ marginLeft: "3%" }}>
               VIP
               <span className="checkmark"></span>

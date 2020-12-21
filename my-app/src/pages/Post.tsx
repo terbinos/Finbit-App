@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { AppState } from "../store";
 import { PostState } from "../store/post/types";
 
@@ -8,12 +8,33 @@ interface Props {
   post: PostState;
 }
 const Post: React.FC<Props> = ({ post }) => {
+  const [goBack, setGoBack] = useState(false);
+
+  const back = () => {
+    setGoBack(true);
+  }
+
+  if(goBack) return <Redirect to='/users'/>
   return (
-    <div style={{ margin: "20%" }}>
+    <div>
       <div>
-        <Link to="/users">Go back</Link>
+        <div className="post">
+          <div>
+            <button style={{width:'20%', backgroundColor:'#9a56c2',color:'white',cursor:'pointer',  borderRadius: '20px',fontSize: '22px', marginTop:'2%', marginLeft:'1%'}} onClick={back}>Go back</button>
+          </div>
+          <div className="profile-header">
+            <div >
+              <h2>Post Detail</h2>
+              <h4>{post.selectedPost?.title}</h4>
+            </div>
+          </div>
+          <div>
+            <div className="lower-container">
+              <div></div>
+            </div>
+          </div>
+        </div>
       </div>
-      {post.selectedPost?.title}
     </div>
   );
 };

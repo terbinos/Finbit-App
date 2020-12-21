@@ -66,12 +66,18 @@ export enum UsersTypes {
   USER_COMMENT_FAILED = "USER_COMMENT_FAILED",
   INITIAL_VALUE_LOADED = "INITIAL_VALUE_LOADED",
   INITIAL_VALUE_FAILED = "INITIAL_VALUE_FAILED",
-  VALUE_UPDATED = 'VALUE_UPDATED',  
+  VALUE_UPDATED = 'VALUE_UPDATED',
+  VIP_UPDATED = 'VIP_UPDATED',  
   SET_ROUTE_STATE = "SET_ROUTE_STATE",
 }
 
 interface ValueUpdatedAction {
   type: typeof UsersTypes.VALUE_UPDATED;
+  payload: any;
+}
+
+interface VipUpdatedAction {
+  type: typeof UsersTypes.VIP_UPDATED;
   payload: any;
 }
 
@@ -133,3 +139,4 @@ export type UsersActionTypes =
   | RouteStateLoadedAction
   | SelectedStateLoadedAction
   | ValueUpdatedAction
+  | VipUpdatedAction

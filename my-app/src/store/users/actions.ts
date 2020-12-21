@@ -94,9 +94,23 @@ export const thunkUpdateVIP = (
   try {
     dispatch({
       type: UsersTypes.VALUE_UPDATED,
-      payload: "hey",
+      payload: isVIP,
     });
   } catch (error) {
     console.log("Update error", error);
   }
 };
+
+// export const thunkUpdateVIPFromList = (
+//   userId:number,
+//   isVIP: boolean,
+// ): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
+//   try {
+//     dispatch({
+//       type: UsersTypes.VIP_UPDATED,
+//       payload: {id:userId,data:isVIP},
+//     });
+//   } catch (error) {
+//     console.log("Update error", error);
+//   }
+// };

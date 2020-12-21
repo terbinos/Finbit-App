@@ -4,7 +4,6 @@ body {
   background: #f1f1f1;
   font-family: Courier New, monospace;
   box-sizing: border-box;
-
 }
 .card-container {
   width: 300px;
@@ -21,7 +20,7 @@ body {
 }
 .upper-container {
   height: 150px;
-  background:#9a56c2;
+  background: #9a56c2;
 }
 .image-container {
   width: 80px;
@@ -71,7 +70,7 @@ h4 {
 }
 .lower-container .btn:hover {
   background: transparent;
-  color:#9a56c2;
+  color: #9a56c2;
   border: 2px solid #5485f9;
 }
 
@@ -112,6 +111,20 @@ h4 {
   /* top: 50%;
     left: 50%; */
   /* transform: translate(-50%,-50%); */
+  box-shadow: 0px 1px 10px 1px #000;
+  overflow: hidden;
+  display: inline-block;
+}
+.post {
+  line-height: 1.5;
+  font-size: 0.9em;
+  /* padding: 15px; */
+  width: 500px;
+  height: 420px;
+  background: #fff;
+  margin-left: 30%;
+  margin-top: 8%;
+  border-radius: 2px;
   box-shadow: 0px 1px 10px 1px #000;
   overflow: hidden;
   display: inline-block;
@@ -182,7 +195,8 @@ a:active {
   border: 2px solid #5485f9;
 }
 
-.active, .collapsible:hover {
+.active,
+.collapsible:hover {
   background-color: #555;
 }
 
@@ -214,7 +228,7 @@ a:active {
 }
 
 /* Profile css */
-.profile-main{
+.profile-main {
   width: 900px;
   height: 1200px;
   margin: 0 auto;
@@ -223,33 +237,33 @@ a:active {
   font-family: Andale Mono, monospace;
   font-weight: 1000;
 }
-.profile-header{
+.profile-header {
   height: 330px;
   width: 100%;
-  background-color: #EBF6FA;
-  border-bottom: 2px solid #E2F3FB;
+  background-color: #ebf6fa;
+  border-bottom: 2px solid #e2f3fb;
 }
-.user-detail{
+.user-detail {
   position: relative;
   width: 75%;
   margin: 0 auto;
   height: 100%;
 }
-.user-image{
+.user-image {
   float: left;
   position: relative;
   width: 23%;
   height: 135px;
 }
-.user-image img{
+.user-image img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   margin-top: 35px;
 }
-.prof-label{
+.prof-label {
   position: absolute;
-  background: #8C13A0;
+  background: #8c13a0;
   color: #fff;
   padding: 9px 4px;
   border-radius: 50%;
@@ -257,107 +271,107 @@ a:active {
   left: 42px;
   font-size: 12px;
 }
-.user-data{
+.user-data {
   float: left;
   width: 32%;
-  
+
   padding-left: 27px;
   margin-bottom: 20px;
 }
-.user-data h2{ 
+.user-data h2 {
   margin-bottom: 0px;
   margin-top: 35px;
   font-size: 20px;
   font-weight: 2000;
 }
-.user-data .post-label{
+.user-data .post-label {
   font-size: 10px;
-  border: 1px solid #C3CECB;
+  border: 1px solid #c3cecb;
   padding: 0px 4px;
   border-radius: 4px;
-  background: #F3F5F5;
+  background: #f3f5f5;
   margin-right: 5px;
 }
-.user-data .post-label:hover{
-  background-color: #F8EDE7;
-  border-color: #F2D4BA;
+.user-data .post-label:hover {
+  background-color: #f8ede7;
+  border-color: #f2d4ba;
 }
-.user-data p{
+.user-data p {
   font-size: 12px;
   color: #404040;
 }
 
 /*tab*/
-.tab-panel-main{
+.tab-panel-main {
   width: 100%;
   margin: 0 auto;
 }
-.tab-content{
+.tab-content {
   display: none;
   padding: 15px 5px;
 }
-.tab-content.current{
+.tab-content.current {
   display: inherit;
 }
-.skill-box{
-  border:1px solid #ededed;
+.skill-box {
+  border: 1px solid #ededed;
   border-radius: 3px;
   padding: 11px 15px;
   margin-bottom: 0px;
   width: 100%;
 }
-.skill-box ul li strong{
+.skill-box ul li strong {
   font-size: 12px;
 }
-.skill-box ul{ 
+.skill-box ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.skill-box ul li{
+.skill-box ul li {
   display: inline-block;
   font-size: 11px;
   margin-right: 4px;
   padding: 4px 4px;
   border-radius: 2px;
 }
-.skill-box ul li:hover{
+.skill-box ul li:hover {
   /* background-color: #FF6E00; */
   color: #fff !important;
 }
-.skill-box ul li:first-child:hover{
+.skill-box ul li:first-child:hover {
   background-color: #fff;
   color: black !important;
 }
-.skill-box ul li i{
+.skill-box ul li i {
   margin-left: 4px;
   margin-right: 1px;
 }
-.bio-box{
+.bio-box {
   float: left;
   width: 100%;
-  border:1px solid #ededed;
+  border: 1px solid #ededed;
   border-radius: 4px;
   margin: 5%;
 }
-.detail-box{
+.detail-box {
   /* float: right; */
   width: 100%;
   font-family: Courier New, monospace;
   /* border:1px solid black; */
   /* padding: 13px; */
-  margin:5%;
+  margin: 5%;
   /* border-radius: 4px; */
 }
-.bio-box .heading{
+.bio-box .heading {
   padding: 10px 0px 10px 10px;
 }
-.bio-box .heading p{
+.bio-box .heading p {
   margin: 0px;
   font-weight: 2000;
   font-size: 13px;
 }
-.bio-box .heading label{
+.bio-box .heading label {
   float: right;
   font-size: 9px;
   /* font-weight: normal; */
@@ -365,23 +379,23 @@ a:active {
   border-right: none;
   padding: 2px 1px 2px 5px;
 }
-.bio-box .desc{
+.bio-box .desc {
   padding: 10px 10px 10px 10px;
   text-align: justify;
   color: #838383;
   font-size: 13px;
 }
-.detail-box{
+.detail-box {
   /* padding: 10px; */
   /* width: 80%; */
   font-size: 13px;
 }
-.detail-box p{
+.detail-box p {
   /* font-weight: 1000; */
   margin: 0px;
   /* width: 1000px; */
 }
-.detail-box .ul-first{
+.detail-box .ul-first {
   padding: 0px;
   /* list-style: none; */
   display: inline-block;
@@ -394,12 +408,15 @@ a:active {
   width: 100%;
 }
 
-#customers td, #customers th {
+#customers td,
+#customers th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
 /* #customers tr:hover {background-color: #ddd;} */
 
@@ -412,18 +429,18 @@ a:active {
   /* color: white; */
 }
 
-#Basic-detail{
+#Basic-detail {
   height: 410px;
   width: 90%;
   float: left;
   padding-left: 0px;
-  padding-right: 0px; 
+  padding-right: 0px;
 }
-.summary{
-  color:'#fff';
+.summary {
+  color: "#fff";
 }
 
-.summary .content{
+.summary .content {
   width: 50%;
   float: left;
   text-align: center;
@@ -432,7 +449,7 @@ a:active {
   background: #9a56c2;
   padding: 10px 0;
 }
-.summary .content2{
+.summary .content2 {
   width: 50%;
   float: left;
   color: white;
@@ -460,7 +477,7 @@ a:active {
   text-align: left;
   outline: none;
 }
-.turnoffButton{
+.turnoffButton {
   color: white;
   margin-left: 18%;
   cursor: pointer;
@@ -472,7 +489,8 @@ a:active {
   display: inline-block;
   font-size: 12px;
 }
-@media (min-width: 320px) and (max-width: 640px){
+
+@media (min-width: 320px) and (max-width: 640px) {
   .backButton {
     width: 80%;
     margin-top: 30px;
@@ -492,12 +510,12 @@ a:active {
     text-align: left;
     outline: none;
   }
-  .profile-main{
+  .profile-main {
     width: 90%;
     height: 100vh;
     /* height: 80000; */
   }
-  .user-detail{
+  .user-detail {
     width: 95%;
     /* height: 10; */
   }
@@ -505,36 +523,48 @@ a:active {
     width: 33%;
     height: 100px;
   }
-  .user-data{
+  .user-data {
     width: 51%;
     margin-bottom: 27px;
   }
-  ul.tabs{
+  ul.tabs {
     width: 97%;
     font-size: 13.5px;
     right: 0px;
     top: 261px;
     left: 7px;
   }
-  .profile-header{
+  .profile-header {
     height: 250px;
-
   }
-  .bio-box{
+  .bio-box {
     width: 100%;
     margin-bottom: 10px;
   }
-  .detail-box{
+  .detail-box {
     width: 100%;
     float: left;
     padding: 0;
   }
-  .detail-box p{
+  .detail-box p {
     /* padding: 10px; */
     padding-bottom: 10px;
     padding-bottom: 0;
   }
-  .detail-box ul.ul-first{
+  .detail-box ul.ul-first {
     padding-left: 10px;
+  }
+  .post {
+    line-height: 1.5;
+    font-size: 0.9em;
+    /* padding: 15px; */
+    width: 300px;
+    height: 420px;
+    background: #fff;
+    margin-left: 10%;
+    border-radius: 2px;
+    box-shadow: 0px 1px 10px 1px #000;
+    overflow: hidden;
+    display: inline-block;
   }
 }

@@ -1,6 +1,7 @@
 import { Reducer } from "redux";
 import update from "react-addons-update";
 import { UsersActionTypes, UsersState, UsersTypes } from "./types";
+import { stat } from "fs";
 
 export const usersInitialState: UsersState = {
   users: null,
@@ -21,9 +22,19 @@ export const UsersReducer: Reducer<UsersState, UsersActionTypes> = (
     case UsersTypes.VALUE_UPDATED:
       return update(state, {
         user: {
-          email: { $set: action.payload },
+          isVIP: { $set: action.payload },
         },
       });
+
+    // case UsersTypes.VIP_UPDATED:
+    //   return {
+    //     ...state,
+    //     users: state.users?.map((user, i) =>
+    //       i === action.payload.id
+    //         ? { ...user, isVIP: action.payload.data }
+    //         : user
+    //     ),
+    //   };
 
     case UsersTypes.SET_ROUTE_STATE:
       return {
