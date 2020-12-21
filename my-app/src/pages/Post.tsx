@@ -46,13 +46,13 @@ const Post: React.FC<Props> = ({ post, thunkGetPostComments }) => {
           <hr/>
           <h4>Comments</h4>
           {/* <hr/> */}
-          {post.postComments?.map((comment,i) => {
+          {!post.selectedPost?.isCommentOff! ? post.postComments?.map((comment,i) => {
             return (
               <h5>{i+1}
                 <span style={{ fontWeight: "normal" }}> {comment.body}</span>
               </h5>
             );
-          })}
+          }) : <h5 style={{ fontWeight: "normal" }}>Comments are turned off</h5>}
         </div>
       </div>
     </div>

@@ -33,7 +33,8 @@ export interface IUserPosts{
   userId: number,
   id: number,
   title: string,
-  body: string
+  body: string,
+  isCommentOff: boolean | null,
 }
 
 export interface IUserComments{
@@ -67,8 +68,14 @@ export enum UsersTypes {
   INITIAL_VALUE_LOADED = "INITIAL_VALUE_LOADED",
   INITIAL_VALUE_FAILED = "INITIAL_VALUE_FAILED",
   VALUE_UPDATED = 'VALUE_UPDATED',
-  VIP_UPDATED = 'VIP_UPDATED',  
+  VIP_UPDATED = 'VIP_UPDATED', 
+  COMMENT_OFF_UPDATED = 'COMMENT_OFF_UPDATED',  
   SET_ROUTE_STATE = "SET_ROUTE_STATE",
+}
+
+interface CommentOffUpdatedAction {
+  type: typeof UsersTypes.COMMENT_OFF_UPDATED;
+  payload: any;
 }
 
 interface ValueUpdatedAction {
@@ -140,3 +147,4 @@ export type UsersActionTypes =
   | SelectedStateLoadedAction
   | ValueUpdatedAction
   | VipUpdatedAction
+  | CommentOffUpdatedAction

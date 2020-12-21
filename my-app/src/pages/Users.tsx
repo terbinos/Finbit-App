@@ -9,6 +9,7 @@ import {
   thunkGetUserComments,
   thunkSetInitialValue,
   thunkUpdateVIP,
+  thunkUpdateCommentsOff
 } from "../store/users/actions";
 import { thunkSetSelectedPost } from "../store/post/actions";
 import Profile from "./Profile";
@@ -21,6 +22,7 @@ interface Props {
   thunkSetInitialValue: any;
   thunkSetSelectedPost: any;
   thunkUpdateVIP: any;
+  thunkUpdateCommentsOff: any;
 }
 const Users: React.FC<Props> = ({
   users,
@@ -30,6 +32,7 @@ const Users: React.FC<Props> = ({
   thunkSetInitialValue,
   thunkSetSelectedPost,
   thunkUpdateVIP,
+  thunkUpdateCommentsOff
 }) => {
   // const [user, setUser] = useState<IUser | null>(null);
   const dispatch = useDispatch();
@@ -64,8 +67,10 @@ const Users: React.FC<Props> = ({
         posts={users?.userPosts!}
         comments={users?.userComments!}
         initialValue={users?.initialValue!}
+        thunkGetUserPost={thunkGetUserPost}
         thunkSetSelectedPost={thunkSetSelectedPost}
         thunkUpdateVIP={thunkUpdateVIP}
+        thunkUpdateCommentsOff={thunkUpdateCommentsOff}
       />
     </div>
   ) : (
@@ -133,4 +138,5 @@ export default connect(mapStateToProps, {
   thunkSetInitialValue,
   thunkSetSelectedPost,
   thunkUpdateVIP,
+  thunkUpdateCommentsOff,
 })(Users);

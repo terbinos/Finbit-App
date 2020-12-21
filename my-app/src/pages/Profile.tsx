@@ -10,6 +10,8 @@ interface Props {
   initialValue: number;
   thunkSetSelectedPost: any;
   thunkUpdateVIP: any;
+  thunkUpdateCommentsOff: any;
+  thunkGetUserPost:any;
 }
 const Profile: React.FC<Props> = ({
   user,
@@ -18,6 +20,8 @@ const Profile: React.FC<Props> = ({
   initialValue,
   thunkSetSelectedPost,
   thunkUpdateVIP,
+  thunkUpdateCommentsOff,
+  thunkGetUserPost,
 }) => {
   const [
     maximumCommentPost,
@@ -30,14 +34,14 @@ const Profile: React.FC<Props> = ({
   const [postRedirect, setPostRedirect] = useState(false);
   const [maximumComments, setMaximumComments] = useState(initialValue);
   const [minimumComments, setMinimumComments] = useState(initialValue);
-  const [comment, setComments] = useState(false);
 
   const vipChange = () => {
     thunkUpdateVIP(!user?.isVIP!);
   };
 
-  const changeCommentSetting = () => {
-    setComments(!comment);
+  const changeCommentSetting = (post: IUserPosts) => {
+    thunkUpdateCommentsOff(post.id, !post.isCommentOff);
+    // thunkGetUserPost(post?.userId!);
   };
 
   useEffect(() => {
@@ -78,10 +82,12 @@ const Profile: React.FC<Props> = ({
             <img src="http://nicesnippets.com/demo/up-profile.jpg" alt="" />
           </div>
           <div className="user-data">
-            <h2 >User Detail</h2>
+            <h2>User Detail</h2>
             <hr />
             <h3>{user?.name}</h3>
-            {user?.isVIP! && <p style={{ color: "green", fontWeight: "bold" }}>VIP</p>}
+            {user?.isVIP! && (
+              <p style={{ color: "green", fontWeight: "bold" }}>VIP</p>
+            )}
             <p>
               <strong>{user?.email}</strong>
             </p>
@@ -102,14 +108,18 @@ const Profile: React.FC<Props> = ({
             <p>
               {user?.address.street},{user?.address.suite}
             </p>
-            <input type="checkbox" checked={user?.isVIP!} onChange={vipChange} />
+            <input
+              type="checkbox"
+              checked={user?.isVIP!}
+              onChange={vipChange}
+            />
             <label style={{ marginLeft: "3%" }}>
               VIP
               <span className="checkmark"></span>
             </label>
           </div>
           <div className="user-data">
-            <h2 >Company Detail </h2>
+            <h2>Company Detail </h2>
             <hr />
             <h4>
               <strong>{user?.company.name}</strong>
@@ -185,12 +195,14 @@ const Profile: React.FC<Props> = ({
                       <td>
                         {" "}
                         <div style={{ display: "flex" }}>
-                          <button
-                            className="turnoffButton"
-                            onClick={changeCommentSetting}
-                          >
-                            Turn Off
-                          </button>
+                          
+                            <button
+                              className="turnoffButton"
+                              onClick={() => changeCommentSetting(post)}
+                            >
+                              Turn {post?.isCommentOff ? 'ON' : 'OFF'}
+                            </button>
+                          
                         </div>
                       </td>
                     </tr>

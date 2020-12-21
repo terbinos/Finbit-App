@@ -1,7 +1,6 @@
 import { Reducer } from "redux";
 import update from "react-addons-update";
 import { UsersActionTypes, UsersState, UsersTypes } from "./types";
-import { stat } from "fs";
 
 export const usersInitialState: UsersState = {
   users: null,
@@ -25,6 +24,15 @@ export const UsersReducer: Reducer<UsersState, UsersActionTypes> = (
           isVIP: { $set: action.payload },
         },
       });
+    case UsersTypes.COMMENT_OFF_UPDATED:
+      return {
+        ...state,
+        userPosts: state.userPosts?.map((post) =>
+          post.id === action.payload.id
+            ? { ...post, isCommentOff: action.payload.data }
+            : post
+        ),
+      };
 
     // case UsersTypes.VIP_UPDATED:
     //   return {

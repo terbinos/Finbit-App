@@ -101,6 +101,22 @@ export const thunkUpdateVIP = (
   }
 };
 
+export const thunkUpdateCommentsOff = (
+  postId: number,
+  isVIP: boolean
+): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
+  try {
+    console.log("postId", postId);
+    console.log("isVIP", isVIP);
+    dispatch({
+      type: UsersTypes.COMMENT_OFF_UPDATED,
+      payload: { id: postId, data: isVIP },
+    });
+  } catch (error) {
+    console.log("Update error", error);
+  }
+};
+
 // export const thunkUpdateVIPFromList = (
 //   userId:number,
 //   isVIP: boolean,
