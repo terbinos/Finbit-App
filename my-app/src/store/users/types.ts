@@ -1,8 +1,15 @@
+export interface IUserDetails {
+  userId: number;
+  vip: boolean;
+  comments: boolean;
+}
+
 export interface IUser {
     id: number,
     name: string,
     username: string,
     email: string,
+    isVIP: boolean | null,
     address: {
       street: string,
       suite: string,
@@ -39,15 +46,19 @@ export interface IUserComments{
 
 export interface UsersState {
   users: IUser[] | null;
+  user: IUser | null;
   userPosts: IUserPosts[] | null;
   userComments: IUserComments[] | null;
   initialValue: number | null;
+  routeState: boolean | null ;
+  // userDetails: IUserDetails[] | null;
   loading: boolean | null;
   error: any;
 }
 
 export enum UsersTypes {
   USER_LOADED = "USER_LOADED",
+  SELECTED_USER_LOADED = "SELECTED_USER_LOADED",
   USER_FAILED = "USER_FAILED",
   USER_POST_LOADED = "USER_POST_LOADED",
   USER_POST_FAILED = "USER_POST_FAILED",
@@ -55,6 +66,23 @@ export enum UsersTypes {
   USER_COMMENT_FAILED = "USER_COMMENT_FAILED",
   INITIAL_VALUE_LOADED = "INITIAL_VALUE_LOADED",
   INITIAL_VALUE_FAILED = "INITIAL_VALUE_FAILED",
+  VALUE_UPDATED = 'VALUE_UPDATED',  
+  SET_ROUTE_STATE = "SET_ROUTE_STATE",
+}
+
+interface ValueUpdatedAction {
+  type: typeof UsersTypes.VALUE_UPDATED;
+  payload: any;
+}
+
+interface SelectedStateLoadedAction {
+  type: typeof UsersTypes.SELECTED_USER_LOADED;
+  payload: any;
+}
+
+interface RouteStateLoadedAction {
+  type: typeof UsersTypes.SET_ROUTE_STATE;
+  payload: any;
 }
 
 interface UserLoadedAction {
@@ -102,3 +130,6 @@ export type UsersActionTypes =
   | UserCommentFailedAction
   | InitialValueFailedAction
   | InitialValueLoadedAction
+  | RouteStateLoadedAction
+  | SelectedStateLoadedAction
+  | ValueUpdatedAction

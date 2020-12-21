@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
 import { AppState } from "../store";
-import { UsersState } from "../store/users/types";
+import { UsersState, UsersTypes } from "../store/users/types";
 import { IUser } from "../store/users/types";
 import {
   thunkGetUsers,
   thunkGetUserPost,
   thunkGetUserComments,
   thunkSetInitialValue,
+  thunkUpdateVIP,
 } from "../store/users/actions";
-import { thunkSetSelectedPost} from '../store/post/actions';
+import { thunkSetSelectedPost } from "../store/post/actions";
 import Profile from "./Profile";
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
   thunkGetUserComments: any;
   thunkSetInitialValue: any;
   thunkSetSelectedPost: any;
+  thunkUpdateVIP: any;
 }
 const Users: React.FC<Props> = ({
   users,
@@ -27,35 +29,43 @@ const Users: React.FC<Props> = ({
   thunkGetUserComments,
   thunkSetInitialValue,
   thunkSetSelectedPost,
+  thunkUpdateVIP,
 }) => {
-  const [userProfile, setUserProfile] = useState(false);
-  const [user, setUser] = useState<IUser | null>(null);
-
+  // const [user, setUser] = useState<IUser | null>(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     thunkGetUsers();
   }, [thunkGetUsers]);
 
   const changeView = (user: IUser | null, loadData: boolean) => {
-    !userProfile && setUser(user);
+    dispatch({
+      type: UsersTypes.SET_ROUTE_STATE,
+      payload: loadData,
+    });
+    !users.routeState &&
+      dispatch({
+        type: UsersTypes.SELECTED_USER_LOADED,
+        payload: user!,
+      });
     if (loadData) {
       thunkSetInitialValue();
       thunkGetUserPost(user?.id!);
       thunkGetUserComments(user?.id!);
     }
-    setUserProfile(!userProfile);
   };
 
-  return userProfile ? (
+  return users.routeState ? (
     <div>
-      <div className="profileButton" onClick={() => changeView(null, false)}>
+      <div className="backButton" onClick={() => changeView(null, false)}>
         Back to Users Lists
       </div>
       <Profile
-        user={user!}
+        user={users.user!}
         posts={users?.userPosts!}
         comments={users?.userComments!}
         initialValue={users?.initialValue!}
         thunkSetSelectedPost={thunkSetSelectedPost}
+        thunkUpdateVIP={thunkUpdateVIP}
       />
     </div>
   ) : (
@@ -122,5 +132,5 @@ export default connect(mapStateToProps, {
   thunkGetUserComments,
   thunkSetInitialValue,
   thunkSetSelectedPost,
-  
+  thunkUpdateVIP,
 })(Users);

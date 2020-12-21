@@ -4,7 +4,6 @@ import { ThunkAction } from "redux-thunk";
 import { AppState } from "..";
 import { UsersTypes } from "./types";
 
-
 export const thunkGetUsers = (): ThunkAction<
   void,
   AppState,
@@ -51,12 +50,9 @@ export const thunkSetInitialValue = (): ThunkAction<
   }
 };
 
-export const thunkGetUserPost = (userId:number): ThunkAction<
-  void,
-  AppState,
-  null,
-  Action<string>
-> => async (dispatch) => {
+export const thunkGetUserPost = (
+  userId: number
+): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
   try {
     let res;
     const api = `https://jsonplaceholder.typicode.com/posts?userId=${userId}`;
@@ -73,12 +69,9 @@ export const thunkGetUserPost = (userId:number): ThunkAction<
   }
 };
 
-export const thunkGetUserComments = (userId:number): ThunkAction<
-  void,
-  AppState,
-  null,
-  Action<string>
-> => async (dispatch) => {
+export const thunkGetUserComments = (
+  userId: number
+): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
   try {
     let res;
     const api = `https://jsonplaceholder.typicode.com/comments?userId=${userId}`;
@@ -95,3 +88,15 @@ export const thunkGetUserComments = (userId:number): ThunkAction<
   }
 };
 
+export const thunkUpdateVIP = (
+  isVIP: boolean
+): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
+  try {
+    dispatch({
+      type: UsersTypes.VALUE_UPDATED,
+      payload: "hey",
+    });
+  } catch (error) {
+    console.log("Update error", error);
+  }
+};
