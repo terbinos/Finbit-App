@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+import { AxAsync } from "../config";
 import { IUser, IUserComments, IUserPosts } from "../store/users/types";
 import { Charts } from "./Chart";
 
@@ -47,8 +47,9 @@ const Profile: React.FC<Props> = ({
     let tempPosts:number[] = [];
     let tempLebels:number[] = [];
     posts?.forEach(async (post: IUserPosts,i) => {
-      let res = await axios.get(
-        `https://jsonplaceholder.typicode.com/posts/${post.id}/comments`
+      const ax = await AxAsync();
+      let res = await ax.get(
+        `/posts/${post.id}/comments`
       );
       tempPosts.push(res.data.length);
       tempLebels.push(i+1);

@@ -1,8 +1,7 @@
-// import axios from "axios";
-import axios from "axios";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { AppState } from "..";
+import { AxAsync } from "../../config";
 import { IUserPosts } from "../users/types";
 import { PostTypes } from "./types";
 
@@ -34,8 +33,8 @@ export const thunkGetPostComments = (postId:string): ThunkAction<
 > => async (dispatch) => {
   try {
     let res;
-    const api = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
-    res = await axios.get(api);
+    const ax = await AxAsync();
+    res = await ax.get(`/posts/${postId}/comments`);
     dispatch({
       type: PostTypes.POST_COMMENTS_LOAD_SUCCESS,
       payload: res.data,

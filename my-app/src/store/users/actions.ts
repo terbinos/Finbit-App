@@ -1,8 +1,9 @@
-import axios from "axios";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { AppState } from "..";
 import { UsersTypes } from "./types";
+import { AxAsync } from '../../config';
+
 
 export const thunkGetUsers = (): ThunkAction<
   void,
@@ -12,9 +13,8 @@ export const thunkGetUsers = (): ThunkAction<
 > => async (dispatch) => {
   try {
     let res;
-
-    const api = "https://jsonplaceholder.typicode.com/users";
-    res = await axios.get(api);
+    const ax = await AxAsync();
+    res = await ax.get('/users');
     dispatch({
       type: UsersTypes.USER_LOADED,
       payload: res.data,
@@ -35,9 +35,8 @@ export const thunkSetInitialValue = (): ThunkAction<
 > => async (dispatch) => {
   try {
     let res;
-
-    const api = "https://jsonplaceholder.typicode.com/posts/1/comments";
-    res = await axios.get(api);
+    const ax = await AxAsync();
+    res = await ax.get('/posts/1/comments');
     dispatch({
       type: UsersTypes.INITIAL_VALUE_LOADED,
       payload: res.data.length,
@@ -55,8 +54,8 @@ export const thunkGetUserPost = (
 ): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
   try {
     let res;
-    const api = `https://jsonplaceholder.typicode.com/posts?userId=${userId}`;
-    res = await axios.get(api);
+    const ax = await AxAsync();
+    res = await ax.get(`/posts?userId=${userId}`);
     dispatch({
       type: UsersTypes.USER_POST_LOADED,
       payload: res.data,
@@ -74,8 +73,8 @@ export const thunkGetUserComments = (
 ): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
   try {
     let res;
-    const api = `https://jsonplaceholder.typicode.com/comments?userId=${userId}`;
-    res = await axios.get(api);
+    const ax = await AxAsync();
+    res = await ax.get(`/comments?userId=${userId}`);
     dispatch({
       type: UsersTypes.USER_COMMENT_LOADED,
       payload: res.data,
