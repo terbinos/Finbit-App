@@ -78,7 +78,7 @@ const Profile: React.FC<Props> = ({
             <img src="http://nicesnippets.com/demo/up-profile.jpg" alt="" />
           </div>
           <div className="user-data">
-            <h2 style={{ fontFamily: "times-new-roman" }}>User Detail</h2>
+            <h2 >User Detail</h2>
             <hr />
             <h3>{user?.name}</h3>
             {user?.isVIP! && <p style={{ color: "green", fontWeight: "bold" }}>VIP</p>}
@@ -109,7 +109,7 @@ const Profile: React.FC<Props> = ({
             </label>
           </div>
           <div className="user-data">
-            <h2 style={{ fontFamily: "times-new-roman" }}>Company Detail </h2>
+            <h2 >Company Detail </h2>
             <hr />
             <h4>
               <strong>{user?.company.name}</strong>

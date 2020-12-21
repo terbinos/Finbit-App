@@ -248,6 +248,7 @@ a:active {
   width: 75%;
   margin: 0 auto;
   height: 100%;
+  padding-top: 1%;
 }
 .user-image {
   float: left;
@@ -536,6 +537,7 @@ a:active {
   }
   .profile-header {
     height: 250px;
+    margin-top: 40%;
   }
   .bio-box {
     width: 100%;
