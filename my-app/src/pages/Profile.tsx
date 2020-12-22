@@ -84,7 +84,7 @@ const Profile: React.FC<Props> = ({
       <div className="profile-header">
         <div className="user-detail">
           <div className="user-image">
-            <img src="http://nicesnippets.com/demo/up-profile.jpg" alt="" />
+            <img src={`https://ui-avatars.com/api/?name=${user.name}`} alt="" />
           </div>
           <div className="user-data">
             <h2>User Detail</h2>
